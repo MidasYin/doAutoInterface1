@@ -1,16 +1,13 @@
 method: post
-url: 'http://test.saas.guoanjgjt.cn'
+url: 'http://xx'
 path: '/api/platform/login/submit'
-#
-#LoginPlatform:
-#    LoginId: "13590909090"
-#    PassWord: "90909090a"
+
 LoginPlatform:
-    LoginId: "platform_admin"
+    LoginId: "xx"
     PassWord: "123"
 
 Login:
-    LoginId: "18289092324"
+    LoginId: "yy"
     PassWord: "123456qq"
 
 header:
