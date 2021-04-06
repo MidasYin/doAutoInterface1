@@ -1,0 +1,19 @@
+method: post
+url: 'http://test.saas.guoanjgjt.cn'
+path: '/api/platform/login/submit'
+#
+#LoginPlatform:
+#    LoginId: "13590909090"
+#    PassWord: "90909090a"
+LoginPlatform:
+    LoginId: "platform_admin"
+    PassWord: "123"
+
+Login:
+    LoginId: "18289092324"
+    PassWord: "123456qq"
+
+header:
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36
+  Content-Type: application/json
+
