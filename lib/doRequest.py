@@ -18,7 +18,7 @@ class Request:
 
     def requestMethod(self, *args, **kwargs):
         try:
-            if kwargs['data'] != None:
+            if 'data' in kwargs.keys():
                 result = self.session.request(method=kwargs['method'], url=kwargs['url'], headers=kwargs['headers'], json=kwargs['data'])
             else:
                 result = self.session.request(method=kwargs['method'], url=kwargs['url'], headers=kwargs['headers'])
