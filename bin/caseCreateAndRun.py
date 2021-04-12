@@ -25,12 +25,13 @@ def runCase(file:str, template_file = templateFile, path=CASE_PATH) ->bool:
     caseName = file.split(".")[0]
     print("执行用例:{}_{}".format("test", caseName))
     file = os.path.join(path, "test_" + caseName + ".py")
-    os.system("python" + " " + file)
+    os.system("pytest" + " " + "-sv" + " " + file)
 
 if __name__ == '__main__':
     # 首先调用生成用例函数
     # create_case_file(_path=path, files="deleteEducations.yaml") #指定路径，创建指定文件的测试代码
     #case_create(file="rentin.yaml", template_file=templateFile)
-    runCase(file="rentin.yaml", template_file=templateFile)
+    runCase(file="xx.yaml", template_file=templateFile)
+
 
 
