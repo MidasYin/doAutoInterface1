@@ -4,6 +4,7 @@ from settings import *
 from lib.doRequest import Request
 from lib.getLogging import Logger
 import pytest
+import allure
 
 #生成filename.log文件
 filename = os.path.basename(__file__)
@@ -22,26 +23,30 @@ def getRequestData(file: str) -> list:
     else:
         raise Exception("文件名只支持yaml或者yml")
 
-
+@allure.feature(featureName)
 class Test%(class_name)s():
+    @allure.story('11')
+    @allure.title("执行 %(data_file)s")
     @pytest.mark.parametrize('url,method,data,header', getRequestData('%(data_file)s.yaml'))
     def test_getResult(self, url, method, data, header, login) -> bool:
         """
-        :param auth:
+        :param url, method, data, header, login(返回token):
         :return: bool
         """
         #获取auth,组成新的header
-        Authorization = login
-        headers = {**header, **{"Authorization": Authorization}}
+        logging.info("开始测试....")
+        with allure.step("登录获取token，并组成新的header头："):
+            Authorization = login
+            headers = {**header, **{"Authorization": Authorization}}
+            with allure.step("判断是否需要请求data数据，组装请求数据："):
+                if data is not None:
+                    rs = self.doRequest(method=method, url=url, headers=headers, data=data)
+                else:
+                    rs = self.doRequest(method=method, url=url, headers=headers)
 
-        if data is not None:
-            rs = self.doRequest(method=method, url=url, headers=headers, data=data)
-        else:
-            rs = self.doRequest(method=method, url=url, headers=headers)
-
-        logging.info("返回值为:{}".format(rs))
-
-        #下面接入与数据库对比
+                logging.info("返回值为:{}".format(rs))
+                with allure.step("与数据库等进行对比："):
+                    logging.info("后续需要完成的")
 
     @Request()
     def doRequest(self, **kwargs):
