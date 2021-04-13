@@ -28,7 +28,7 @@ class Test%(class_name)s():
     @allure.story('11')
     @allure.title("执行 %(data_file)s")
     @pytest.mark.parametrize('url,method,data,header', getRequestData('%(data_file)s.yaml'))
-    def test_getResult(self, url, method, data, header, login) -> bool:
+    def test_%(method_name)s(self, url, method, data, header, login) -> bool:
         """
         :param url, method, data, header, login(返回token):
         :return: bool
@@ -38,15 +38,15 @@ class Test%(class_name)s():
         with allure.step("登录获取token，并组成新的header头："):
             Authorization = login
             headers = {**header, **{"Authorization": Authorization}}
-            with allure.step("判断是否需要请求data数据，组装请求数据："):
-                if data is not None:
-                    rs = self.doRequest(method=method, url=url, headers=headers, data=data)
-                else:
-                    rs = self.doRequest(method=method, url=url, headers=headers)
+        with allure.step("判断是否需要请求data数据，组装请求数据："):
+            if data is not None:
+                rs = self.doRequest(method=method, url=url, headers=headers, data=data)
+            else:
+                rs = self.doRequest(method=method, url=url, headers=headers)
 
-                logging.info("返回值为:{}".format(rs))
-                with allure.step("与数据库等进行对比："):
-                    logging.info("后续需要完成的")
+            logging.info("返回值为:{}".format(rs))
+        with allure.step("与数据库等进行对比："):
+            logging.info("后续需要完成的")
 
     @Request()
     def doRequest(self, **kwargs):
