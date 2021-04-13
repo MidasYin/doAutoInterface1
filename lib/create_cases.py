@@ -40,12 +40,13 @@ def set_res_data(res):
 #             case_create(file, template_file) if _path is None else case_create(file, template_file, _path)
 
 
-def case_create(file: str, template_file: str, _path=None):
+def case_create(file: str, template_file: str, case_fold: str, _path=None):
     """
 
-    :param file: 取出请求的yaml或者yml文件名
-    :param template_file: 默认是template下面的templates.txt文件
-    :param _path: 放置case的地址，默认为None，即为testcase下方
+    :param file:
+    :param template_file: 模板文件
+    :param case_fold: 读取case地址
+    :param _path: 放置生成用例的地址，默认为None，即testcase下方
     :return:
     """
     if file.endswith('.yaml') or file.endswith('.yml'):
@@ -59,7 +60,8 @@ def case_create(file: str, template_file: str, _path=None):
             content = temp.read() % {
                 'class_name': test_class_name,
                 'method_name': test_method_name,
-                'data_file': data_file
+                'data_file': data_file,
+                'case_fold': case_fold
             }
             test_case_file = 'test_{}.py'.format(data_file)
         # 根据模板生成测试用例文件,判断实在testcase目录下，还是在下级节点

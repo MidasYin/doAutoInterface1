@@ -11,10 +11,19 @@ filename = os.path.basename(__file__)
 logging = Logger(filename).getlog()
 featureName = filename.split(".")[0].split("_")[1] + "接口测试"
 
+CASE_FOLD = r'%(case_fold)s'
+
 #获取yaml文件中配置的数据
-def getRequestData(file: str) -> list:
+def getRequestData(file: str,_path) -> list:
+
+    """
+    :param file: 文件名
+    :param _path: 取testcase数据的地址，默认为testcase目录下
+    :return:
+    """
+
     if file.endswith('.yaml') or file.endswith('.yml'):
-        rs = doYaml.get_data(os.path.join(DATA_PATH, file))
+        rs = doYaml.get_data(os.path.join(_path, file))
         url = URL + rs["path"]
         method = rs["method"]
         data = rs["data"]
@@ -27,7 +36,7 @@ def getRequestData(file: str) -> list:
 class Test%(class_name)s():
     @allure.story('11')
     @allure.title("执行 %(data_file)s")
-    @pytest.mark.parametrize('url,method,data,header', getRequestData('%(data_file)s.yaml'))
+    @pytest.mark.parametrize('url,method,data,header', getRequestData('%(data_file)s.yaml', CASE_FOLD))
     def test_%(method_name)s(self, url, method, data, header, login) -> bool:
         """
         :param url, method, data, header, login(返回token):
