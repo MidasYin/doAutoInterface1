@@ -30,7 +30,7 @@ def set_res_data(res):
 #     filepath = os.path.join(DATA_PATH, foldname) if foldname is not None else DATA_PATH
 #     if files is not None:
 #         file = os.path.join(filepath, files)
-#         if FileUtils.isexists(file):
+#          if FileUtils.isexists(file):
 #             case_create(files, template_file, foldname) if _path is None else case_create(files, template_file, foldname, _path)
 #         else:
 #             print("请在data目录下创建yaml或者yml文件")
@@ -40,7 +40,14 @@ def set_res_data(res):
 #             case_create(file, template_file) if _path is None else case_create(file, template_file, _path)
 
 
-def case_create(file, template_file, foldname=None, _path=None):
+def case_create(file: str, template_file: str, _path=None):
+    """
+
+    :param file: 取出请求的yaml或者yml文件名
+    :param template_file: 默认是template下面的templates.txt文件
+    :param _path: 放置case的地址，默认为None，即为testcase下方
+    :return:
+    """
     if file.endswith('.yaml') or file.endswith('.yml'):
         # 测试用例文件名和yaml文件名
         data_file = file.replace('.yaml', '').replace('.yml', '')
@@ -51,9 +58,8 @@ def case_create(file, template_file, foldname=None, _path=None):
         with open(template_file, 'r', encoding='utf-8') as temp:
             content = temp.read() % {
                 'class_name': test_class_name,
-                #'method_name': test_method_name,
-                'data_file': data_file,
-                #'fold_name': foldname
+                'method_name': test_method_name,
+                'data_file': data_file
             }
             test_case_file = 'test_{}.py'.format(data_file)
         # 根据模板生成测试用例文件,判断实在testcase目录下，还是在下级节点
@@ -64,6 +70,6 @@ def case_create(file, template_file, foldname=None, _path=None):
             with open(os.path.join(_path, test_case_file), 'w', encoding='utf-8') as f:
                 f.write(content)
         print("生成:" + test_case_file + ":文件成功")
+
     else:
-        print("请输入yaml或者yml文件")
-        return -1
+        raise Exception("文件名只支持yaml或者yml")
