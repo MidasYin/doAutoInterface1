@@ -1,8 +1,6 @@
 import sys
-import os
 from settings import *
 from lib.create_cases import case_create
-from lib.fileGet import FileUtils
 
 #将当前项目的目录加入零时环境变量，避免在其他地方运行时会出现引入错误
 base_path = os.path.dirname(
@@ -23,22 +21,18 @@ foldname = "Position"
 path_read = []
 
 
-def runCase(file:str, case_fold=DATA_PATH, template_file = templateFile, path=CASE_PATH) ->bool:
+def createCase(file: str, case_fold=DATA_PATH, template_file=templateFile, path=CASE_PATH):
     """
 
     :param file:
     :param template_file:
-    :param path: 执行用例的目录
+    :param path: 执行用例的目录,默认放在testcase下
     :return:
     """
-    case_create(file=file, template_file=template_file, case_fold=case_fold)
-    caseName = file.split(".")[0]
-    print("执行用例:{}_{}".format("test", caseName))
-    file = os.path.join(path, "test_" + caseName + ".py")
-    os.system("pytest" + " " + "-sv" + " " + file)
+    case_create(file=file, template_file=template_file, case_fold=case_fold, _path=path)
 
 
-def batchRunCase(case_fold=DATA_PATH, template_file = templateFile, path=CASE_PATH):
+def batchCreateCase(case_fold=DATA_PATH, template_file = templateFile, path=CASE_PATH):
     """
 
     :param case_fold: 取数据，以及生成的用例读取请求数据的目录
@@ -50,10 +44,14 @@ def batchRunCase(case_fold=DATA_PATH, template_file = templateFile, path=CASE_PA
     file_lists = check_if_dir(case_fold)
     for file in file_lists:
         #分离文件以及目录，分别用于创建用例
-        file_name = file.split("\\")[-1]
-        case_fold = os.path.dirname(file)
+        if os.sep == "\\":
+            file_name = file.split("\\")[-1]
+            case_fold = os.path.dirname(file)
+        else:
+            file_name = file.split("/")[-1]
+            case_fold = os.path.dirname(file)
         try:
-            runCase(file=file_name, template_file=template_file, case_fold=case_fold, path=CASE_PATH)
+            case_create(file=file_name, template_file=template_file, case_fold=case_fold, _path=path)
         except Exception as e:
             print("批量生成case失败，原因是:{}".format(e))
 
@@ -80,7 +78,7 @@ def check_if_dir(file_path: str) -> list:
 if __name__ == '__main__':
     # runCase(file="rentin.yaml", template_file=templateFile)
     # runCase(file="bill.yaml", template_file=templateFile)
-    #pathOne = os.path.join(DATA_PATH, "base")
-    batchRunCase(case_fold=DATA_PATH, template_file=templateFile, path=CASE_PATH)
+    pathOne = os.path.join(DATA_PATH, "base")
+    batchCreateCase(case_fold=DATA_PATH, template_file=templateFile, path=CASE_PATH)
 
 

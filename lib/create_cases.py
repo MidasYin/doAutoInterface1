@@ -1,6 +1,7 @@
 from lib.fileGet import FileUtils
 from settings import *
 
+
 def set_res_data(res):
     if res:
         return res.lower().replace('":"', "=").replace('":', "=")
@@ -64,14 +65,26 @@ def case_create(file: str, template_file: str, case_fold: str, _path=None):
                 'case_fold': case_fold
             }
             test_case_file = 'test_{}.py'.format(data_file)
-        # 根据模板生成测试用例文件,判断实在testcase目录下，还是在下级节点
+
+        # 根据模板生成测试用例文件,判断是在testcase目录下，还是在下级节点
+        # 并判断是否在当前路径下已存在该文件
+
         if _path is None:
-            with open(os.path.join(CASE_PATH, test_case_file), 'w', encoding='utf-8') as f:
-                f.write(content)
+            if os.path.exists(os.path.join(CASE_PATH, test_case_file)):
+                print("{}:该文件已存在,skip".format(test_case_file))
+            else:
+                with open(os.path.join(CASE_PATH, test_case_file), 'w', encoding='utf-8') as f:
+                    f.write(content)
+                print("生成:" + test_case_file + ":文件成功")
         else:
-            with open(os.path.join(_path, test_case_file), 'w', encoding='utf-8') as f:
-                f.write(content)
-        print("生成:" + test_case_file + ":文件成功")
+            #生成自定义放置的用例地址，没有目录创建目录
+            FileUtils.mkdir(_path)
+            if os.path.exists(os.path.join(_path, test_case_file)):
+                print("{}:该文件已存在,skip".format(test_case_file))
+            else:
+                with open(os.path.join(_path, test_case_file), 'w', encoding='utf-8') as f:
+                    f.write(content)
+                print("生成:" + test_case_file + ":文件成功")
 
     else:
         raise Exception("文件名只支持yaml或者yml")

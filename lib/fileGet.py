@@ -87,16 +87,17 @@ class FileUtils(object):
             print(line)
         p.wait()
 
-    def mkdir(self, path):
+    @staticmethod
+    def mkdir(path):
         """
         判断目录是否存在，不存在就创建目录
         :param path:   目录路径
         """
-        if self.isexists(path):
-            if self.isfile(path):
-                self.makedirs(path)
+        if os.path.exists(path):
+            if os.path.isfile(path):
+                os.makedirs(path)
         else:
-            self.makedirs(path)
+            os.makedirs(path)
 
     def write(self, filepath, sb):
         # 写入文件,不会换行，需要自己写入换行 ,文件不存在时自动生成文件

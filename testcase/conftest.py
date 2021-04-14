@@ -1,6 +1,7 @@
 # #接口自动化模板
 import requests
 import pytest
+import lib
 from lib.get_yaml import doYaml
 from settings import *
 from lib.getLogging import Logger
