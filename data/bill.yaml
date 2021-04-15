@@ -1,58 +1,13 @@
 method: post
-path: '/api/csm/mat/outinnerpick/bill'
+path: 'xx'
 
 data:
   ActivityCode: "020"
-  ActivityId: "1372434502390226944"
-  ActivityName: "项目同级A2-111"
-  AttachCount: 0
-  BizDate: "2021-03-27"
-  BizStatus: 1
-  Code: "MOIP00202021000008"
-  CommitedMark: true
-  FlowId: ""
-  FlowTemplateId: 0
-  FlowTitle: "-xxx-管理员-2021-3-27"
-  FormId: "1292746474583859200"
-  HasFlow: false
-  Id: "1375693474551406592"
-  IsBalance: false
-  MainMan: ""
-  Manager: ""
-  MatMan: ""
-  Memo: ""
-  NewMark: true
-  PageId: "1292747789942759424"
-  PickingPurpose: "临时设施"
-  PrjCode: "更改编码"
-  PrjId: "1366631035079860224"
-  PrjName: "项目A2-1"
-  SavedMark: true
-  SendMan: ""
-  StorageId: "1369481312093532160"
-  StorageName: "项目A2-1仓库"
+  ActivityId: "yy"
+  StorageName: "223"
   UnitName: "111"
   SubList:
     -
-      AccumulatedAmount: 0
-      Amount: 10
-      BillCode: "IS00202021000003"
-      BillId: "1369536307158949888"
-      BillItemId: "1369536432094683136"
-      BillType: "IS"
-      BizDate: "2021-03-10T00:00:00"
-      Id: "1369536432333758464"
-      MatClassId: "1285152249671696390"
-      MatClassName: "门窗、隔断、楼梯扶手及木制品"
-      MatCode: "0110010010001"
-      MatId: "1285152249692667904"
-      MatName: "玻璃隔板 "
-      MatQuality: ""
-      MatType: ""
-      MatUnit: "㎡"
-      NoTaxPrice: 10
-      NoTaxTotalPrice: 100
-      Price: 11
       TaxMoney: 10
       TaxRate: 10
       TotalPrice: 110
