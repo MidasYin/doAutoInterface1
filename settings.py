@@ -14,6 +14,10 @@ TEMPLATE_PATH = os.path.join(BASE_PATH, 'template') #存放用例生成模板文
 URL = "http://yy"
 
 
+#设置请求钉钉的地址
+DINGDINGURL = "xx"
+
+
 #设置pymysql相关配置
 ip = 'xx'
 port = '5441'  #测试数据库端口
