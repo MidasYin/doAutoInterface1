@@ -52,3 +52,9 @@ batchCreateCase(case_fold=DATA_PATH, template_file=templateFile, path=CASE_PATH)
 
 
 5、现在只做了请求，并返回result，没对进一步验证进行编写，这点可以修改template/templates.txt继续去完善
+
+
+
+PS：代码需要修改的配置的地方有：
+1、settings.py按照注释的地方进行配置
+2、requestBJR.*  都是配置的登录相关的数据，requestBJR.yml是登录名，密码配置；requestBJR.py是需要登录后去解析token传递出去
