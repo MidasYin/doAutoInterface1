@@ -26,7 +26,7 @@ class RequestDing():
             "msgtype": "markdown",
             "markdown": msg,
             "at": {
-                #"atMobiles": ["18113185587", "18081078463"],
+                #"atMobiles": [***],
                 "isAtAll": True
             }
         }
