@@ -31,12 +31,12 @@ SENDTYPE = "DingDing"
 #SENDTYPE = "Email"
 
 #设置pymysql相关配置
-ip = '192.168.110.75'
-port = '5441'  #测试数据库端口
+ip = 'xx'
+port = 'yy'  #测试数据库端口
 #port = '5442'  #dev数据库端口
-user = 'hradmin'
+user = 'ss'
 password = '123456'
-database = 'citic'
+database = 'dd'
 
 #配置redis
 
