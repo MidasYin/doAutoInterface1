@@ -6,6 +6,7 @@ import time
 from _pytest import runner, terminal
 from lib.get_yaml import doYaml
 from lib.requestDingDing import RequestDing
+from lib.requestQiWeiXin import RequestQi
 from settings import *
 from lib.getLogging import Logger
 logging = Logger("conftest").getlog()
@@ -33,8 +34,13 @@ def login():
 
     logging.info("开始清理临时数据...")
 
-def pytest_terminal_summary(terminalreporter, exitstatus, config):
-    '''收集测试结果'''
+def pytest_terminal_summary(terminalreporter, sendType = SENDTYPE, switch = SWITCH):
+    """
+    :param terminalreporter:
+    :param sendType: DingDing,QiWeiXin,Email
+    :param switch: True or False
+    :return:
+    """
     duration = time.time() - terminalreporter._sessionstarttime
     msg = {
         "total": terminalreporter._numcollected,
@@ -48,8 +54,20 @@ def pytest_terminal_summary(terminalreporter, exitstatus, config):
     logging.info(50 * "---")
     logging.info(msg)
     logging.info(50 * "---")
-    logging.info("开始发送钉钉报告...")
-    RequestDing.sendDingMsg(webhook=DINGDINGURL, msg=RequestDing.getMsg(msg))
+    if switch:
+        if sendType == "DingDing":
+            logging.info("开始发送钉钉报告...")
+            RequestDing.sendDingMsg(webhook=DINGDINGURL, msg=RequestDing.getMsg(msg))
+        elif sendType == "QiWeiXin":
+            logging.info("开始发送企业微信报告...")
+            RequestQi.sendQiMsg(webhook=QIWEIXINURL, msg=RequestQi.getMsg(msg))
+        elif sendType == "Email":
+            logging.info("待开发")
+        else:
+            raise Exception("不支持其他发送方式")
+    else:
+        logging.info("不发送报告")
+
 
 
 if __name__ == '__main__':

@@ -11,20 +11,32 @@ TEMPLATE_PATH = os.path.join(BASE_PATH, 'template') #存放用例生成模板文
 
 
 #设置系统的地址
-URL = "http://yy"
+URL = "xx"
 
+#是否发送报告
+SWITCH = True
+#SWITCH = False
 
 #设置请求钉钉的地址
-DINGDINGURL = "xx"
+DINGDINGURL = ""
 
+
+#设置企业微信请求地址
+QIWEIXINURL = "xx"
+
+
+#设置结果发送平台(DingDing,QiWeiXin,Email)
+SENDTYPE = "DingDing"
+#SENDTYPE = "QiWeiXin"
+#SENDTYPE = "Email"
 
 #设置pymysql相关配置
-ip = 'xx'
+ip = '192.168.110.75'
 port = '5441'  #测试数据库端口
 #port = '5442'  #dev数据库端口
-user = 'yy'
+user = 'hradmin'
 password = '123456'
-database = 'yy'
+database = 'citic'
 
 #配置redis
 
