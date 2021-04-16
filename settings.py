@@ -10,8 +10,18 @@ LOG_PATH = os.path.join(BASE_PATH, 'log')  #存放日志目录
 TEMPLATE_PATH = os.path.join(BASE_PATH, 'template') #存放用例生成模板文件
 
 
-#设置系统的地址
+#设置系统接口的域名地址
 URL = "xx"
+
+#设置pymysql相关配置
+ip = 'xx'
+port = 'yy'  #测试数据库端口
+#port = '5442'  #dev数据库端口
+user = 'ss'
+password = '123456'
+database = 'dd'
+
+#配置redis
 
 #是否发送报告
 SWITCH = True
@@ -30,14 +40,5 @@ SENDTYPE = "DingDing"
 #SENDTYPE = "QiWeiXin"
 #SENDTYPE = "Email"
 
-#设置pymysql相关配置
-ip = 'xx'
-port = 'yy'  #测试数据库端口
-#port = '5442'  #dev数据库端口
-user = 'ss'
-password = '123456'
-database = 'dd'
-
-#配置redis
 
 
