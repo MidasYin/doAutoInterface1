@@ -1,3 +1,7 @@
+**PS：代码需要修改的配置的地方有：
+1、settings.py按照注释的地方进行配置
+2、requestBJR.*  都是配置的登录相关的数据，requestBJR.yml是登录名，密码配置；requestBJR.py是需要登录后去解析token传递出去
+
 此框架使用方法：
 1、在data目录下，按照请求格式，配置好http请求的数据
 data下是按照yaml格式创建请求体，可以参照如何yaml文件的提取
@@ -55,6 +59,4 @@ batchCreateCase(case_fold=DATA_PATH, template_file=templateFile, path=CASE_PATH)
 
 
 
-PS：代码需要修改的配置的地方有：
-1、settings.py按照注释的地方进行配置
-2、requestBJR.*  都是配置的登录相关的数据，requestBJR.yml是登录名，密码配置；requestBJR.py是需要登录后去解析token传递出去
+
